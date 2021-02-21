@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,6 +22,54 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Create an instance of the tab layout from the view.
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        // Set the text for each tab.
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label1));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label2));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label3));
+
+        // Set the tabs to fill the entire layout.
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        // Use PagerAdapter to manage page views in fragments.
+        // Each page is represented by its own fragment.
+        final ViewPager viewPager = findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+
+        // Setting a listener for clicks.
+        viewPager.addOnPageChangeListener(new
+                TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        viewPager.setCurrentItem(tab.getPosition());
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+                    }
+                });
+    }
+}
+/*
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label1));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label2));
@@ -29,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
 
-        final ViewPager viewPager = findViewById(R.id.pager);
+        final ViewPager2 viewPager = findViewById(R.id.pager);
         final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 1, tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
 
@@ -51,4 +100,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-}
+}*/
