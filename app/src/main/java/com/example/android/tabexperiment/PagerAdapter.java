@@ -1,16 +1,19 @@
 package com.example.android.tabexperiment;
 
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
-    private int mNumberOfTabs;
 
-    public PagerAdapter(@NonNull FragmentManager fm, int behavior, int numberOfTabs) {
-        super(fm, behavior);
-        this.mNumberOfTabs = numberOfTabs;
+public class PagerAdapter extends FragmentStatePagerAdapter {
+
+    private final int mNumberOfTabs;
+
+    public PagerAdapter(FragmentManager fm, int behaviour, int NumOfTabs) {
+        super(fm, behaviour);
+        this.mNumberOfTabs = NumOfTabs;
     }
 
     @NonNull
@@ -29,6 +32,3 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return mNumberOfTabs;
     }
 }
-
-
-//androidx.fragment.app.FragmentStatePagerAdapter public static final int BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT = 1
